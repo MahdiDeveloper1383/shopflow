@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function Header() {
   const pathname = usePathname();
-  const [menuOpen,setmenuOpen] = useState(false)
+  const [menuOpen, setmenuOpen] = useState(false);
   const links = [
     { name: "Home", href: "/" },
     { name: "Features", href: "/features" },
@@ -33,9 +33,7 @@ function Header() {
               ShopFlow
             </h1>
 
-            <p className="text-xs text-gray-500">
-              Business Management System
-            </p>
+            <p className="text-xs text-gray-500">Business Management System</p>
           </div>
         </Link>
 
@@ -74,10 +72,7 @@ function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <button 
-        className="md:hidden"
-        onClick={()=>setmenuOpen(!menuOpen)}
-        >
+        <button className="md:hidden" onClick={() => setmenuOpen(!menuOpen)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-7 w-7 text-gray-700"
@@ -93,23 +88,24 @@ function Header() {
             />
           </svg>
         </button>
-       
       </div>
-       {menuOpen && (
-            <nav className="flex md:hidden flex-col items-center">
-     
-                    {links.map((l)=>(
-                   
-                            <Link key={l.name}  className={`font-medium transition-colors duration-200 ${
+      {menuOpen && (
+        <nav className="flex md:hidden flex-col items-center">
+          {links.map((l) => (
+            <Link
+              key={l.name}
+              className={`font-medium transition-colors duration-200 ${
                 pathname === l.href
                   ? "text-blue-600"
                   : "text-gray-600 hover:text-blue-600"
-              }`}  href={l.href}>{l.name}</Link>
-                    
-                    ))}
-        
-            </nav>
-        )}
+              }`}
+              href={l.href}
+            >
+              {l.name}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
