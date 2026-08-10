@@ -1,7 +1,6 @@
 "use client";
+import { useToggleIndex } from "@/Hooks/UseToggleIndex";
 import { ArrowDown, ArrowUp } from "lucide-react";
-import { useState } from "react";
-
 const Howtowork = [
   {
     step: "Step 1",
@@ -27,10 +26,7 @@ const Howtowork = [
   },
 ];
 function How_to_work() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const togglehowtowork = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  const {openIndex,toggleIndex} = useToggleIndex()
   return (
     <div className="w-full min-h-screen bg-gray-50 py-20 px-6">
       <div className="mx-auto max-w-7xl">
@@ -49,7 +45,7 @@ function How_to_work() {
               className="w-full max-w-[600px] rounded-3xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-all duration-300"
             >
               <div
-                onClick={() => togglehowtowork(index)}
+                onClick={() => toggleIndex(index)}
                 className="flex items-center justify-between p-6"
               >
                 <div className="flex items-center gap-5">

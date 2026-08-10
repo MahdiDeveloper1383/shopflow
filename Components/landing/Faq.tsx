@@ -1,6 +1,6 @@
 "use client";
+import { useToggleIndex } from "@/Hooks/UseToggleIndex";
 import { ArrowDown, ArrowUp } from "lucide-react";
-import { useState } from "react";
 const FAQs = [
   {
     id: 1,
@@ -37,10 +37,7 @@ const FAQs = [
   },
 ];
 function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const toggleFaq = (id: number) => {
-    setOpenIndex((prev) => (prev === id ? null : id));
-  };
+  const {openIndex,toggleIndex} = useToggleIndex()
   return (
     <div className="w-full min-h-[500px] bg-gray-100 py-16 px-4">
       <h2 className="text-4xl font-bold text-black text-center mb-10">
@@ -54,7 +51,7 @@ function FAQ() {
             className="basis-full md:basis-[700px] rounded-3xl bg-gray-800 border border-gray-600 p-6 text-white shadow-lg transition-all duration-300"
           >
             <div
-              onClick={() => toggleFaq(faq.id)}
+              onClick={() => toggleIndex(faq.id)}
               className="flex items-center justify-between w-full cursor-pointer"
             >
               <div className="flex items-center gap-4">

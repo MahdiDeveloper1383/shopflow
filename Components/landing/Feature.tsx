@@ -1,4 +1,5 @@
 "use client";
+import { useToggleIndex } from "@/Hooks/UseToggleIndex";
 import {
   ArrowDown,
   ArrowUp,
@@ -11,7 +12,6 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
-import { useState } from "react";
 const features = [
   {
     title: "Product Management",
@@ -63,10 +63,7 @@ const features = [
   },
 ];
 function Feature() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const toggleFeature = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  const {toggleIndex,openIndex} = useToggleIndex()
   return (
     <div className="w-full min-h-[60vh] flex flex-col gap-10 px-6 py-16 bg-gray-100">
       <h3 className="text-center text-5xl font-bold">Powerful Features</h3>
@@ -78,7 +75,7 @@ function Feature() {
             className="basis-full md:basis-[500px] overflow-hidden grow rounded-3xl border border-gray-700 bg-gray-800 text-white"
           >
             <div
-              onClick={() => toggleFeature(index)}
+              onClick={() => toggleIndex(index)}
               className="flex cursor-pointer items-center justify-between p-5"
             >
               <div className="flex items-center gap-5">
