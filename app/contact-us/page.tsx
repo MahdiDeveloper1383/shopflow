@@ -1,8 +1,16 @@
+'use client'
 import Footer from "@/Components/landing/Footer";
 import Header from "@/Components/landing/Header";
-import React from "react";
+import React, { useState } from "react";
+import { SendMessageContact } from "../api/contact/route";
 
 export default function page() {
+  const [message,setmessage] = useState('')
+  async function handlesubmit(formdata:FormData) {
+    const result = await SendMessageContact(formdata)
+    
+    setmessage(result.message)
+  }
   return (
     <React.Fragment>
       <Header />
@@ -13,7 +21,7 @@ export default function page() {
               Get In Touch
             </h4>
 
-            <form action="" className="space-y-6">
+            <form action={handlesubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="flex flex-col gap-2">
@@ -93,6 +101,7 @@ export default function page() {
               >
                 Send Message
               </button>
+              {message && <p>{message}</p>}
             </form>
 
             {/* Contact information */}

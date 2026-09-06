@@ -18,7 +18,7 @@ export async function SendMessageContact(formData:FormData){
     }
     try{
         await resend.emails.send({
-            from : 'Shopflow <onboarding@resend.dev>',
+            from : 'onboarding@resend.dev',
             to:process.env.CONTACT_EMAIL!,
             replyTo : email,
             subject:subject,
